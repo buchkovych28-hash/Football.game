@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Penalty Game 9:16</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        
+        <div id="start-screen" class="overlay">
+            <div class="modal">
+                <h1>За кого ти?</h1>
+                <p>Обери свою команду, щоб пробити пенальті!</p>
+                <div class="team-cards">
+                    <div class="team-card" onclick="startGame('dembele')">
+                        <img src="psg_logo.png" alt="Логотип ПСЖ" class="team-logo">
+                        <h2>ПСЖ</h2>
+                    </div>
+                    <div class="team-card" onclick="startGame('rice')">
+                        <img src="arsenal_logo.png" alt="Логотип Арсеналу" class="team-logo arsenal-fix">
+                        <h2>Арсенал</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="end-screen" class="overlay" style="display: none;">
+            <div class="modal bonus-modal">
+                <h1>На тебе чекає твій бонус!</h1>
+                <p>Ти забив 3 з 3 голів і довів свою майстерність.</p>
+                <a href="https://твій-сайт.com/реєстрація" target="_blank" class="bonus-btn">Забрати бонус</a>
+            </div>
+        </div>
+
+        <img id="goalkeeper" src="goalkeeper_center.png" alt="Goalkeeper">
+        
+        <div class="target-zone">
+            <div class="target up-left" data-target="up_left"></div>
+            <div class="target up-center" data-target="up_center"></div>
+            <div class="target up-right" data-target="up_right"></div>
+            
+            <div class="target down-left" data-target="down_left"></div>
+            <div class="target down-center" data-target="down_center"></div>
+            <div class="target down-right" data-target="down_right"></div>
+        </div>
+        
+        <img id="ball" src="ball.png" alt="Ball">
+        <img id="kicker" class="kicker-stand" src="dembele_stand.png" alt="Player">
+        
+        <div class="ui-panel">
+            <div class="scoreboard">
+                <div class="team">ПСЖ: <span id="score-psg" class="score-val">0</span></div>
+                <div class="team">Арсенал: <span id="score-arsenal" class="score-val">0</span></div>
+            </div>
+            <div id="message">Оберіть ціль та бийте!</div>
+            <button id="reset-btn">Наступний удар</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
