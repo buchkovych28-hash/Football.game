@@ -1,0 +1,219 @@
+body {
+    background-color: #000;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    
+    /* Фікси для Android та iPhone: заборона виділення елементів та спалахів при тапах */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.game-container {
+    position: relative;
+    width: 1024px;
+    height: 572px;
+    background: url('background.jpg') no-repeat center center;
+    background-size: cover;
+    border: 4px solid #13eac9;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(19, 234, 201, 0.5);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+/* СТИЛІ ДЛЯ СПЛИВАЮЧИХ ВІКОН (ОВЕРЛЕЇВ) */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.modal {
+    background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    border: 2px solid #13eac9;
+    box-shadow: 0 0 30px rgba(19, 234, 201, 0.4);
+    color: white;
+}
+
+.modal h1 { margin-top: 0; color: #fff; font-size: 32px; text-transform: uppercase; }
+.modal p { color: #aaa; margin-bottom: 30px; font-size: 18px; }
+
+.team-cards {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+
+.team-card {
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.3s;
+    width: 150px;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.team-card:hover {
+    background: #333;
+    border-color: #13eac9;
+    transform: translateY(-5px);
+}
+
+/* НАЛАШТУВАННЯ ЛОГОТИПІВ */
+.team-logo { 
+    height: 110px; 
+    object-fit: contain; 
+}
+
+/* Збільшуємо ПСЖ, щоб коло виглядало пропорційно щиту */
+.team-card:nth-child(1) .team-logo {
+    width: 110px;
+    max-height: 110px;
+    transform: scale(1.1);
+}
+
+/* Центрування та фіксація розміру Арсеналу */
+.arsenal-fix {
+    max-width: 95px;
+    transform: translateX(-2px);
+}
+
+/* КНОПКА БОНУСУ */
+.bonus-btn {
+    display: inline-block;
+    background: #13eac9;
+    color: #000;
+    text-decoration: none;
+    padding: 15px 40px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 8px;
+    text-transform: uppercase;
+    transition: 0.3s;
+    animation: pulse 1.5s infinite;
+}
+
+.bonus-btn:hover { background: #fff; transform: scale(1.05); }
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(19, 234, 201, 0.7); }
+    70% { box-shadow: 0 0 0 20px rgba(19, 234, 201, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(19, 234, 201, 0); }
+}
+
+/* ІГРОВІ ЕЛЕМЕНТИ */
+#goalkeeper {
+    position: absolute;
+    bottom: 220px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 150px;
+    z-index: 10;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.target-zone {
+    position: absolute;
+    bottom: 220px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 620px;
+    height: 230px;
+    z-index: 20;
+}
+
+.target {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border: 3px dashed rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    cursor: pointer;
+    background: rgba(19, 234, 201, 0.05);
+    transition: all 0.2s ease;
+    z-index: 25;
+}
+
+.target:hover { background: rgba(19, 234, 201, 0.4); border-color: #13eac9; transform: scale(1.1); }
+
+.up-left { top: 0px; left: 0px; }
+.up-right { top: 0px; right: 0px; }
+.down-left { bottom: 0px; left: 0px; }
+.down-right { bottom: 0px; right: 0px; }
+.up-center { top: 0px; left: calc(50% - 38px); }
+.down-center { bottom: 0px; left: calc(50% - 38px); }
+
+#ball {
+    position: absolute;
+    bottom: 55px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 60px;
+    z-index: 15;
+}
+
+#kicker {
+    position: absolute;
+    bottom: -45px;
+    height: 300px;
+    z-index: 14;
+    transition: all 0.3s ease;
+}
+
+.kicker-stand { left: 40%; transform: translateX(-50%); }
+.kicker-kick { left: 44%; transform: translateX(-50%) scale(1.05); }
+
+.ui-panel {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 250px;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 15px;
+    border-radius: 8px;
+    color: white;
+    text-align: center;
+    border: 2px solid #13eac9;
+    z-index: 30;
+}
+
+.scoreboard {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.score-val { color: #13eac9; font-size: 18px; }
+#message { margin: 10px 0; color: #13eac9; font-weight: bold; font-size: 16px; }
+#reset-btn { 
+    background: #13eac9; border: none; padding: 8px 15px; 
+    cursor: pointer; border-radius: 4px; font-weight: bold; 
+    color: black; display: none; width: 100%;
+}
+#reset-btn:hover { background: #fff; }
