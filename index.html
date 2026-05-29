@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Football Penalty Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        
+        <div class="ui-panel">
+            <div class="scoreboard">
+                <span>ПСЖ: <span id="score-psg" class="score-val">0</span></span>
+                <span>Арсенал: <span id="score-arsenal" class="score-val">0</span></span>
+            </div>
+            <div id="message">Оберіть ціль та бийте!</div>
+        </div>
+
+        <img id="goalkeeper" src="goalkeeper_center.png" alt="Goalkeeper">
+
+        <div class="target-zone">
+            <div class="target up-left" data-target="up_left"></div>
+            <div class="target up-center" data-target="up_center"></div>
+            <div class="target up-right" data-target="up_right"></div>
+            <div class="target down-left" data-target="down_left"></div>
+            <div class="target down-center" data-target="down_center"></div>
+            <div class="target down-right" data-target="down_right"></div>
+        </div>
+
+        <img id="ball" src="ball.png" alt="Ball">
+
+        <img id="kicker" src="dembele_stand.png" alt="Kicker" class="kicker-stand">
+
+        <div id="start-screen" class="overlay">
+            <div class="modal">
+                <h1>ЗА КОГО ТИ?</h1>
+                <p>Обери свою команду, щоб пробити пенальті!</p>
+                <div class="team-cards">
+                    <div class="team-card" onclick="startGame('dembele')">
+                        <img src="psg_logo.png" alt="PSG" class="team-logo">
+                        <h2>ПСЖ</h2>
+                    </div>
+                    <div class="team-card" onclick="startGame('rice')">
+                        <img src="arsenal_logo.png" alt="Arsenal" class="team-logo arsenal-fix">
+                        <h2>Арсенал</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="end-screen" class="overlay" style="display: none;">
+            <div class="modal">
+                <h1>НА ТЕБЕ ЧЕКАЄ ТВІЙ БОНУС!</h1>
+                <p>50FS ЗА ВЕРИФІКАЦІЮ І БЕЗКОШТОВНА СТАВКА</p>
+                
+                <a href="https://cutt.ly/dtO8KjwR" class="bonus-btn">ЗАБРАТИ БОНУС</a>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
